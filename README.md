@@ -22,31 +22,31 @@ The entire process is a secure, multi-step pipeline:
 
 ```mermaid
 graph TD
-    A[Start: User Uploads File (.pdf, .doc, .docx)] --> B{Step 1: Parse File};
-    B --> C[get_file_text() using 'unstructured' hi-res];
+    A["Start: User Uploads File (.pdf, .doc, .docx)"] --> B{Step 1: Parse File};
+    B --> C["get_file_text() using 'unstructured' hi-res"];
     C --> D{Step 2: Anonymize Text};
-    D --> E[anonymize_and_get_lookup() using Presidio];
-    E --> F[AnalyzerEngine finds PII (PERSON, EMAIL, etc.)];
-    F --> G[AnonymizerEngine creates unique masks (e.g., <PERSON_1>)];
-    G --> H[Output 1: anonymized_text];
-    G --> I[Output 2: lookup_dict {mask: original_value}];
+    D --> E["anonymize_and_get_lookup() using Presidio"];
+    E --> F["AnalyzerEngine finds PII (PERSON, EMAIL, etc.)"];
+    F --> G["AnonymizerEngine creates unique masks (e.g., <PERSON_1>)"];
+    G --> H["Output 1: anonymized_text"];
+    G --> I["Output 2: lookup_dict {mask: original_value}"];
     
     H --> J{Step 3: Parse with LLM};
-    J --> K[LangChain chain.invoke() with anonymized_text];
-    K --> L[Gemini Model generates JSON string];
+    J --> K["LangChain chain.invoke() with anonymized_text"];
+    K --> L["Gemini Model generates JSON string"];
     
     L --> M{Step 4: Validate Schema};
-    M --> N[PydanticOutputParser validates JSON against ResumeSchema];
-    N -- Valid --> O[parsed_masked_model (Pydantic Object)];
-    N -- Invalid --> P[Error: Validation Failed];
+    M --> N["PydanticOutputParser validates JSON against ResumeSchema"];
+    N -- Valid --> O["parsed_masked_model (Pydantic Object)"];
+    N -- Invalid --> P["Error: Validation Failed"];
     
     O --> Q{Step 5: Re-hydrate Data};
     I --> Q;
-    Q --> R[rehydrate_model() swaps masks with original values];
-    R --> S[final_resume_model (Pydantic Object)];
+    Q --> R["rehydrate_model() swaps masks with original values"];
+    R --> S["final_resume_model (Pydantic Object)"];
     
     S --> T{Step 6: Final Output};
-    T --> U[Print final_resume_model as clean JSON];
+    T --> U["Print final_resume_model as clean JSON"];
 ```
 
 -----
