@@ -5,6 +5,20 @@ This project provides a robust, end-to-end pipeline for parsing resumes (`.pdf`,
 
 It intelligently handles complex layouts, anonymizes all Personally Identifiable Information (PII) before processing, and uses a Large Language Model (Gemini) to extract and categorize information with high accuracy. The output is then validated against a strict schema (Pydantic) and securely "re-hydrated" with the original data.
 
+## 📌 Additional Resources
+
+The additional approaches and architectural explorations are detailed in the Google Document:  
+👉 **[View Document](https://docs.google.com/document/d/1kmA0qL3xvemxVt6VDPqV3jbgV_ptZG6e5rmU5BueRQM/edit?usp=sharing)**
+
+### 🔗 Related GitHub Repositories
+
+- 🚀 **Resume Parser Server (Production Pipeline)**  
+  https://github.com/tejas-jm/resume-parser-server  
+
+- 🧠 **LayoutLM-based Resume Parser**  
+  https://github.com/tejas-jm/resume-parser-layoutLM
+
+
 ## ✨ Core Features
 
   * **Broad File Support:** Parses `.pdf`, `.docx`, and legacy `.doc` files.
