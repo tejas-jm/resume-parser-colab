@@ -1,5 +1,5 @@
 
-# 🤖 Secure, Layout-Aware Resume Parser
+# 🤖 ResFLow - A Secure, Layout-Aware Resume Parser
 
 This project provides a robust, end-to-end pipeline for parsing resumes (`.pdf`, `.docx`, `.doc`) into a clean, structured JSON format.
 
